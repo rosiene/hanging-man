@@ -1,2 +1,30 @@
-<h1>HANGING MAN</H1>
-  
+<h1 style="text-align:center;">HANGING MAN</H1>
+
+ <p id="notice"><%= notice %></p>
+
+
+
+<div style="float:right;margin-right:100px;background-color:#42A5F5 ;">
+ <h1 style="padding:40px 40px 0px 40px;">Listing Rankings</h1>
+ <table style="padding:10px 40px 40px 40px;">
+   <thead>
+     <tr style=text-align:left;">
+       <th>Name</th>
+       <th>Tries</th>
+       <th>Game</th>
+       <th colspan="3"></th>
+     </tr>
+   </thead>
+
+   <tbody>
+     <% @rankings.each do |ranking| %>
+       <tr>
+         <td><%= ranking.name %></td>
+         <td><%= ranking.tries %></td>
+         <td><%= ranking.game %></td>
+       </tr>
+     <% end %>
+   </tbody>
+ </table>
+</div>
+ <br>
