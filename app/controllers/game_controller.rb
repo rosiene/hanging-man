@@ -14,7 +14,6 @@ class GameController < ApplicationController
 
   def game_word
     #session[:answer] = @gameword.id
-
     @tries = []
     @gameword = { answer:"Slack" , clue: "slack.jpg" }
 
@@ -27,13 +26,25 @@ class GameController < ApplicationController
     end
 
     @word = answer(@gameword[:answer], @tries)
+    @wrong = wrong_letter(@gameword[:answer], @tries)
 
     if !@word.include?("_")
-        render "you_winner"
+        render "you_won"
+    elsif @wrong >= 10
+      render "you_lost"
+
     end
+
+    @image = "0#{@wrong}.jpg"
+
   end
 
-  def you_winner
+  def you_won
+    session[:letter] = nil
+    #message you win! ranking!
+  end
+
+  def you_lost
     session[:letter] = nil
     #message you win! ranking!
   end
@@ -57,4 +68,13 @@ class GameController < ApplicationController
     show_word
   end
 
+  def wrong_letter(word, tries)
+    wrong = 1
+    tries.each do |letter|
+      if !word.include?(letter.upcase)
+        wrong += 1
+      end
+    end
+    wrong
+  end
 end
