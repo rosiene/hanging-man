@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  resources :rankings
+
+  resources :game
+
+  get 'choose_game' => 'game#choose_game'
+  get 'game_number' => 'game#game_number'
+  get 'game_word' => 'game#game_word'
+  get 'you_winner' => 'game#you_winner' 
+
+  root 'game#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
