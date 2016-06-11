@@ -3,11 +3,13 @@ Rails.application.routes.draw do
 
   resources :game
 
+  get 'home' => 'game#index'
   get 'choose_game' => 'game#choose_game'
   get 'game_number' => 'game#game_number'
-  get 'game_word' => 'game#game_word'
-  get 'you_won' => 'game#you_won'
-  get 'you_lost' => 'game#you_lost' 
+  get 'game_word' => 'game#game_word', as: :game_word_path
+  get 'you_won' => 'game#you_won', as: :you_won
+  get 'you_lost' => 'game#you_lost', as: :you_lost
+  post 'save_name' => 'game#save_name'
 
   root 'game#index'
   # The priority is based upon order of creation: first created -> highest priority.

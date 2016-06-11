@@ -1,21 +1,40 @@
 class GameController < ApplicationController
 
   def index
-
+    @rankings = Ranking.all
   end
 
   def choose_game
-    #input name and choose the game
+
   end
 
   def game_number
     #interante game working - number
   end
 
+  def save_name
+     session[:game] = params[:name]
+     redirect_to game_word_path
+  end
+
   def game_word
-    #session[:answer] = @gameword.id
+
     @tries = []
-    @gameword = { answer:"Slack" , clue: "slack.jpg" }
+    @gameword = nil
+
+    if session[:game] == nil
+
+      @gameword = random_game
+
+      session[:game] = @gameword.id
+    else
+      GameWord.all.each do |game|
+        if game.id == session[:game]
+          @gameword = game
+          break
+        end
+      end
+    end
 
     if params[:letter] != nil
       if session[:letter] != nil
@@ -25,27 +44,33 @@ class GameController < ApplicationController
       session[:letter] = @tries
     end
 
-    @word = answer(@gameword[:answer], @tries)
-    @wrong = wrong_letter(@gameword[:answer], @tries)
+    @word = answer(@gameword.answer.upcase, @tries)
+    @wrong = wrong_letter(@gameword.answer.upcase, @tries)
 
     if !@word.include?("_")
-        render "you_won"
+      redirect_to you_won_path
     elsif @wrong >= 10
-      render "you_lost"
-
+      redirect_to you_lost_path
     end
+    session[:tries] = @tries.size
 
     @image = "0#{@wrong}.jpg"
 
   end
 
   def you_won
+
+    @ranking = Ranking.new(name: session[:name], tries: session[:tries], game: 1)
+    @ranking.save
+
     session[:letter] = nil
+    session[:game] = nil
     #message you win! ranking!
   end
 
   def you_lost
     session[:letter] = nil
+    session[:game] = nil
     #message you win! ranking!
   end
 
@@ -77,4 +102,12 @@ class GameController < ApplicationController
     end
     wrong
   end
+
+  def random_game
+    @game_words = GameWord.all
+    size = @game_words.size - 1
+    random = Random.new
+    @game_words[random.rand(size)]
+  end
+
 end

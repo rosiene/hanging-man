@@ -1,16 +1,29 @@
-<%= image_tag("hangingman/#{@image}", size: "400x400") %>
-<br>
-<%= image_tag("clue/#{@gameword[:clue]}") %>
-<br>
-<% @word.each do |letter| %>
-  <%= "#{letter} ." %>
-<% end %>
 
-<form action="game_word" method="GET">
-<input type="text" name="letter"/>
-</form>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="row">
+    <div class="col-sm-6">
+      <%= image_tag("hangingman/#{@image}", size: "400x400") %>
+    </div>
+    <div class="col-sm-6">
+      <%= image_tag("clue/#{@gameword.clue}") %>
+      <br>
+      <center>
 
-<h3>Your tries:</h3>
-<% @tries.each do |try| %>
-  <%= try %>
-<% end %>
+      <h3>
+        <% @word.each do |letter| %>
+        <%= "#{letter} ." %>
+      <% end %>
+    </h3>
+
+      <form action="game_word" method="GET">
+        <input type="text" name="letter"/></center>
+      </form>
+
+      <h4>Your tries:
+      <% @tries.each do |try| %>
+        <%= try %>
+      <% end %>
+    </h4>
+    </div>
+  </div>
+</div>
