@@ -1,1 +1,15 @@
-word
+
+<%= image_tag("clue/#{@gameword[:clue]}") %>
+<br>
+<% @word.each do |letter| %>
+  <%= "#{letter} ." %>
+<% end %>
+
+<form action="game_word" method="GET">
+<input type="text" name="letter"/>
+</form>
+
+<h3>Your tries:</h3>
+<% @tries.each do |try| %>
+  <%= try %>
+<% end %>

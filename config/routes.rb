@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'choose_game' => 'game#choose_game'
   get 'game_number' => 'game#game_number'
   get 'game_word' => 'game#game_word'
-  get 'you_winner' => 'game#you_winner' 
+  get 'you_won' => 'game#you_won' 
 
   root 'game#index'
   # The priority is based upon order of creation: first created -> highest priority.
