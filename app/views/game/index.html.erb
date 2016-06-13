@@ -15,7 +15,7 @@
      </tr>
    </thead>
    <tbody>
-     <% @rankings.each do |ranking| %>
+     <% @rankings.order("tries desc").each do |ranking| %>
        <tr>
          <td><%= ranking.tries %></td>
          <td><%= ranking.name %></td>

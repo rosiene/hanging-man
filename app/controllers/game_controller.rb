@@ -13,7 +13,7 @@ class GameController < ApplicationController
   end
 
   def save_name
-     session[:game] = params[:name]
+     session[:name] = params[:name]
      redirect_to game_word_path
   end
 

@@ -1,13 +1,8 @@
 <h1 style="text-align:center;">Before you start the game</h1>
 <h1 style="text-align:center;">Please enter your name</h1>
 <center>
-  <form action="/save_name" method="POST">
-    <p><input type="text" name="name"></p>
-    <h3><input class="btn btn-default" type="submit" value="Create"></h3>
-  </form>
-  <p>
-  </p>
-  <p>
-    <h3><%= link_to '[Play]', 'game_word?' %></h3>
-  </p>
+  <%= form_tag("save_name", method: "POST") do %>
+    <p><%= text_field_tag(:name) %></p>
+    <h3><%= submit_tag("Play", class:"btn btn-default") %></h3>
+  <% end %>
 </center>
