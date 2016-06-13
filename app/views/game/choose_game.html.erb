@@ -1,8 +1,17 @@
 <h1 style="text-align:center;">Before you start the game</h1>
 <h1 style="text-align:center;">Please enter your name</h1>
+<<<<<<< HEAD
 <center>
   <%= form_tag("save_name", method: "POST") do %>
     <p><%= text_field_tag(:name) %></p>
     <h3><%= submit_tag("Play", class:"btn btn-default") %></h3>
   <% end %>
 </center>
+=======
+<br>
+
+<form style="text-align:center;" accept-charset="UTF-8" action="play" method="post">
+ <input style="width:500px; height:100px;" name="name" type="text" />
+ <input style="width:100px; height;100px; background-color" name="commit" type="submit" value="enter"/>
+</form>
+>>>>>>> effe7e82d83412e72e11a09ffdce48cdbe17bcd6
